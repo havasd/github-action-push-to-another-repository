@@ -1,6 +1,9 @@
-FROM alpine:latest
+FROM ubuntu:24.04
 
-RUN apk add --no-cache git git-lfs openssh-client
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+    git git-lfs openssh-client && \
+    rm -rf /var/lib/apt/lists/*
 
 COPY entrypoint.sh /entrypoint.sh
 
